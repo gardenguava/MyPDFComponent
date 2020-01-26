@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <link rel='stylesheet' href='./lvStyles.css'></link>
+</head>
+
+<body>
+  <canvas id="myCanvas" width="300" height="150" style="border:1px solid #d3d3d3;">
+    Your browser does not support the HTML5 canvas tag.
+  </canvas>
+  <script src='APPIAN_JS_SDK_URI'></script>
+  <script>
+    Appian.Component.onNewValue(function (newValues) {
+      var xPos = newValues.xPos;
+      var yPos = newValues.yPos;
+      var xSize = newValues.xSize;
+      var ySize = newValues.ySize;
+      var color = newValues.color;
+
+      var c = document.getElementById("myCanvas");
+      var ctx = c.getContext("2d");
+      ctx.strokeStyle = color;
+      ctx.beginPath();
+      ctx.rect(xPos, yPos, xPos+xSize, yPos+ySize);
+      ctx.stroke();
+    });
+  </script>
+</body>
+</html>
