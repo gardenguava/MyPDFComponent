@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script src="./assets/pdf.js"></script>
+<script src="myscript.js"></script>
+<link rel="stylesheet" type="text/css" href="mycomponent.css">
+</head>
+<body>
+	<h1>PDF.js 'Hello, world!' example</h1>
+	<canvas id="the-canvas"></canvas>
+
+	<!-- <div class="pdfContainer">
+		<pdf-viewer oncontextmenu="return false;" #viewer [src]="pdfSrc"
+			[page]="page+1" [rotation]="pageRotationangle" [zoom]="zoom"
+			[show-all]="false" [original-size]="true"
+			style="cursor:-webkit-zoom-in ;display: inline-block; max-width:100%; height:100%;width:100%; float:left; margin-bottom:20px; border: 2px solid #f1f1f1; overflow: scroll;">
+		</pdf-viewer>
+		<span class="rotateButton">
+			<button type="button" class="btn  btn-primary" (click)="rotatePage()">
+				<span class="glyphicon glyphicon-retweet" style="opacity: 100"></span>
+			</button>
+		</span>
+		<div class="pagiWrapper">
+			<ul class="pagination">
+				<li><a title="First"> <input type="image"
+						class="mouseCursor" (click)="changePage(0,viewer?._pdf?.numPages)"
+						src="{{api_path}}/assets/images/icon_first_blue.png" />
+				</a></li>
+				<li><a title="Previous"> <input type="image"
+						class="mouseCursor"
+						(click)="changePage(page-1,viewer?._pdf?.numPages)"
+						src="{{api_path}}/assets/images/icon_previous_blue.png" />
+				</a></li>
+				<li><a title="Page.No."> <span class="pageDesc">Page.No.
+					</span> <input type="number" id="myNumber"
+						(input)="changePage($event.target.value - 1,viewer?._pdf?.numPages)"
+						[value]=" page < viewer?._pdf?.numPages ? page + 1 : viewer?._pdf?.numPages"
+						min="1" [max]="viewer?._pdf?.numPages" class="customPageInput">
+				</a></li>
+				<li><a title="Next"> <input type="image"
+						class="mouseCursor"
+						(click)="changePage(page+1,viewer?._pdf?.numPages)"
+						src="{{api_path}}assets/images/icon_next_blue.png" />
+				</a></li>
+				<li><a title="Last"> <input type="image"
+						class="mouseCursor"
+						(click)="changePage(viewer?._pdf?.numPages,viewer?._pdf?.numPages)"
+						src="{{api_path}}assets/images/icon_last_blue.png" />
+				</a></li>
+			</ul>
+		</div>
+	</div> -->
+</body>
+</html>
