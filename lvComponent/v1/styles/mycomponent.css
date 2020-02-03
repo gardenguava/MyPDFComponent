@@ -1,0 +1,7 @@
+#the-canvas {
+    border: 1px solid black;
+    background-repeat:no-repeat;
+    background-size:contain;
+    background-position:left;
+    direction: ltr;
+}

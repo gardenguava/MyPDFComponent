@@ -11,6 +11,16 @@
     <sdk-version>2.0.0</sdk-version>
     <icon-file>lvComponent.svg</icon-file>
     <parameter>
+      <name>docurl</name>
+      <category>input-only</category>
+      <type>Text</type>
+    </parameter>
+    <parameter>
+      <name>pageNumber</name>
+      <category>input-only</category>
+      <type>Text</type>
+    </parameter>
+    <parameter>
       <name>xPos</name>
       <category>input-only</category>
       <type>Text</type>

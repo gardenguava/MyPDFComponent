@@ -1,57 +1,22 @@
 <!DOCTYPE html>
 <html>
   <head>
-      <script src="./assets/pdf.js"></script>
-      <!--<script src="loadPDF.js"></script>-->
-      <script src="pdffunctions.js"></script>
-      <link rel="stylesheet" type="text/css" href="mycomponent.css">
-      <!--<script src='APPIAN_JS_SDK_URI'></script>-->
-
-    <!--<script>
-      Appian.Component.onNewValue(function (newValues) {
-        var xPos = newValues.xPos;
-        var yPos = newValues.yPos;
-        var xSize = newValues.xSize;
-        var ySize = newValues.ySize;
-        var color = newValues.color;
-
-
-        var pdf = document.getElementById("the-canvas")
-        if (pdf) {
-            var page = pdf;
-            var can;
-
-            if (!document.getElementById('highlightCanvas')) {
-                can = document.createElement('canvas');
-                can.id = 'highlightCanvas';
-                can.height = page.height;
-                can.width = page.width;
-                can.setAttribute('style', 'position: absolute;top: 0px;left: 0px;');
-                var parent = pdf.parentElement;
-                parent.appendChild(can)
-            } else {
-                can = document.getElementById('highlightCanvas')
-            }
-            var pagecanvas = can.getContext('2d');
-            pagecanvas.clearRect(0, 0, can.width, can.height);
-
-            if (page) {
-                pagecanvas.beginPath();
-                pagecanvas.rect(xPos, yPos, xSize, ySize);
-                let highlightcolor = (!color ? 'rgba(66,216,66,0.5)' : color);
-                pagecanvas.fillStyle = highlightcolor;
-                pagecanvas.fill();
-            }
-        }
-      });
-    </script>-->
+      <link rel="stylesheet" type="text/css" href="styles/mycomponent.css">
   </head>
 
   <body>
-    <div id="buttons">
+    <div id="pdf_container">
+        <canvas id="the-canvas"></canvas>
+    </div>
+
+    <script src="libs/pdf.js"></script>
+    <script src='libs/jquery.3.3.1.min.js'></script>
+    <script src="libs/pdffunctions.js"></script>
+    <script src='APPIAN_JS_SDK_URI'></script>
+
+    <!--<div id="buttons">
         <button onclick="loadPage('https://raw.githubusercontent.com/mozilla/pdf.js/ba2edeae/web/compressed.tracemonkey-pldi-09.pdf', 2, 1.5)">Load Page</button>
         <button onclick="highlight(500, 100, 100, 50, '#FF0000')">Highlight</button>
-    </div>
-    <canvas id="the-canvas"></canvas>
+    </div>-->
   </body>
 </html>

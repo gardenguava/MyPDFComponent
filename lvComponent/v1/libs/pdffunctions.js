@@ -1,7 +1,28 @@
+// [LV]: Define global variables here
+
+// Appian callbacks
+$(document).ready(function () {
+    Appian.Component.onNewValue(function (newValues) {
+        var url = newValues.docurl;
+        var pageNumber = newValues.pageNumber;
+        var xPos = newValues.xPos;
+        var yPos = newValues.yPos;
+        var xSize = newValues.xSize;
+        var ySize = newValues.ySize;
+        var color = newValues.color;
+
+        if(url && pageNumber) {
+            loadPage(url, Number(pageNumber), 1);
+            highlight(xPos, yPos, xSize, ySize, color);
+        }
+    });
+});
+
+// [LV]: functions
 function loadPage(url, pageNumber, scale) {
     var pdfjsLib = window['pdfjs-dist/build/pdf'];
 
-    pdfjsLib.GlobalWorkerOptions.workerSrc = './assets/pdf.worker.js';
+    pdfjsLib.GlobalWorkerOptions.workerSrc = 'libs/pdf.worker.js';
     var loadingTask = pdfjsLib.getDocument(url);
     loadingTask.promise.then(function(pdf) {
       pdf.getPage(pageNumber).then(function(page) {

@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/LVComponent.iml" filepath="$PROJECT_DIR$/.idea/LVComponent.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/PDFMarker.iml" filepath="$PROJECT_DIR$/.idea/PDFMarker.iml" />
     </modules>
   </component>
 </project>
