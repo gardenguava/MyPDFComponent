@@ -5,10 +5,11 @@ $(document).ready(function () {
     Appian.Component.onNewValue(function (newValues) {
         var url = newValues.docurl;
         var pageNumber = newValues.pageNumber;
+        var scale = newValues.scale;
         var coordinates = newValues.coordinates;
 
-        if(url && pageNumber) {
-            loadPage(url, Number(pageNumber), 1, coordinates);
+        if(url && pageNumber && scale) {
+            loadPage(url, Number(pageNumber), Number(scale), coordinates);
         }
     });
 });
@@ -24,8 +25,9 @@ function loadPage(url, pageNumber, scale, coordinates) {
         var viewport = page.getViewport({scale: scale});
         var canvas = document.getElementById('the-canvas');
         var context = canvas.getContext('2d');
+
         canvas.height = viewport.height;
-        canvas.width = viewport.width;
+        canvas.width = document.documentElement.clientWidth;
 
         var renderContext = {
           canvasContext: context,

@@ -21,6 +21,11 @@
       <type>Text</type>
     </parameter>
     <parameter>
+      <name>scale</name>
+      <category>input-only</category>
+      <type>Text</type>
+    </parameter>
+    <parameter>
       <name>coordinates</name>
       <category>input-only</category>
       <type>Dictionary?list</type>
