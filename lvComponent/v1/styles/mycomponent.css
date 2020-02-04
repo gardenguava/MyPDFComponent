@@ -5,3 +5,8 @@
     background-position:left;
     direction: ltr;
 }
+
+#pdf_container
+{
+    display: table;
+}

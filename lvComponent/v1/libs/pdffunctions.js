@@ -5,21 +5,16 @@ $(document).ready(function () {
     Appian.Component.onNewValue(function (newValues) {
         var url = newValues.docurl;
         var pageNumber = newValues.pageNumber;
-        var xPos = newValues.xPos;
-        var yPos = newValues.yPos;
-        var xSize = newValues.xSize;
-        var ySize = newValues.ySize;
-        var color = newValues.color;
+        var coordinates = newValues.coordinates;
 
         if(url && pageNumber) {
-            loadPage(url, Number(pageNumber), 1);
-            highlight(xPos, yPos, xSize, ySize, color);
+            loadPage(url, Number(pageNumber), 1, coordinates);
         }
     });
 });
 
 // [LV]: functions
-function loadPage(url, pageNumber, scale) {
+function loadPage(url, pageNumber, scale, coordinates) {
     var pdfjsLib = window['pdfjs-dist/build/pdf'];
 
     pdfjsLib.GlobalWorkerOptions.workerSrc = 'libs/pdf.worker.js';
@@ -38,40 +33,50 @@ function loadPage(url, pageNumber, scale) {
         };
         var renderTask = page.render(renderContext);
         renderTask.promise.then(function () {
+            highlightAll(coordinates);
         });
       });
     }, function (reason) {
-      console.error(reason);
     });
 }
 
-function highlight(xPos, yPos, xSize, ySize, color) {
-    var pdf = document.getElementById("the-canvas")
-    if (pdf) {
-        var page = pdf;
-        var can;
+function highlightAll(coordinates) {
+    if(coordinates && coordinates.length > 0) {
+        var pdf = document.getElementById("the-canvas");
+        if (pdf) {
+            var page = pdf;
+            var can;
 
-        if (!document.getElementById('highlightCanvas')) {
-            can = document.createElement('canvas');
-            can.id = 'highlightCanvas';
-            can.height = page.height;
-            can.width = page.width;
-            can.setAttribute('style', 'position: absolute;top: 0px;left: 0px;');
-            var parent = pdf.parentElement;
-            parent.appendChild(can)
-        } else {
-            can = document.getElementById('highlightCanvas')
-        }
-        var pagecanvas = can.getContext('2d');
-        pagecanvas.clearRect(0, 0, can.width, can.height);
+            if (!document.getElementById('highlightCanvas')) {
+                can = document.createElement('canvas');
+                can.id = 'highlightCanvas';
+                can.height = page.height;
+                can.width = page.width;
+                can.setAttribute('style', 'position: absolute;top: 0px;left: 0px;');
+                var parent = pdf.parentElement;
+                parent.appendChild(can)
+            } else {
+                can = document.getElementById('highlightCanvas')
+            }
+            var pagecanvas = can.getContext('2d');
+            pagecanvas.clearRect(0, 0, can.width, can.height);
 
-        if (page) {
-            pagecanvas.beginPath();
-            pagecanvas.rect(xPos, yPos, xSize, ySize);
-            pagecanvas.globalAlpha = 0.4;
-            let highlightcolor = (!color ? 'rgba(66,216,66,0.5)' : color);
-            pagecanvas.fillStyle = highlightcolor;
-            pagecanvas.fill();
+            if (page) {
+                for(var i=0; i<coordinates.length; i++) {
+                    var xPos = coordinates[i].xPos;
+                    var yPos = coordinates[i].yPos;
+                    var xSize = coordinates[i].xSize;
+                    var ySize = coordinates[i].ySize;
+                    var color = coordinates[i].color;
+
+                    pagecanvas.beginPath();
+                    pagecanvas.rect(Number(xPos), Number(yPos), Number(xSize), Number(ySize));
+                    pagecanvas.globalAlpha = 0.4;
+                    let highlightcolor = (!color ? 'rgba(66,216,66,0.5)' : color);
+                    pagecanvas.fillStyle = highlightcolor;
+                    pagecanvas.fill();
+                }
+            }
         }
     }
 }
